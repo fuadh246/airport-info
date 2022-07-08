@@ -2,28 +2,6 @@ import './App.css';
 import React, { useState } from 'react';
 //import { Host, Key } from '../api';
 
-// {
-//   18 items
-//   "id": 3406
-//   "iata": "JFK"
-//   "icao": "KJFK"
-//   "name": "John F. Kennedy International Airport"
-//   "location": "New York City, New York, United States"
-//   "street_number": ""
-//   "street": ""
-//   "city": ""
-//   "county": "Queens County"
-//   "state": "New York"
-//   "country_iso": "US"
-//   "country": "United States"
-//   "postal_code": "11430"
-//   "phone": "+1 718-244-4444"
-//   "latitude": 40.64131
-//   "longitude": -73.77814
-//   "uct": -240
-//   "website": "https://www.jfkairport.com/"
-// }
-
 const Airport = ({ data }) => {
   return (
     <div>
@@ -62,7 +40,7 @@ const Headers = ({ handleChange, city, getAirport }) => {
         placeholder='City'
         value={city}
         onChange={handleChange}
-        onKeyPress={getAirport}
+      //onKeyPress={getAirport}
       />
       <button className='btn' onClick={getAirport} type='search' >Search</button>
 
@@ -91,7 +69,7 @@ function App() {
     setCity(value)
   }
 
-  const getAirport = (event) => {
+  const getAirport = () => {
 
     const options = {
       method: 'GET',
