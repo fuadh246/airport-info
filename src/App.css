@@ -27,3 +27,8 @@ text-align: center;
   border: 10px solid rgb(123, 211, 205);
   border-radius: 10px;
 }
+.btn{
+  background-color: skyblue;
+  border: none;
+  font-size: 1.4rem;
+}

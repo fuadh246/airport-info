@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
-import { Host, Key } from '../api';
+//import { Host, Key } from '../api';
 
 // {
 //   18 items
@@ -54,6 +54,7 @@ const Headers = ({ handleChange, city, getAirport }) => {
   return (
     <div className='header'>
       <h1>Airport.info</h1>
+
       <input className='input'
         type='text'
         id='city'
@@ -63,6 +64,8 @@ const Headers = ({ handleChange, city, getAirport }) => {
         onChange={handleChange}
         onKeyPress={getAirport}
       />
+      <button className='btn' onClick={getAirport} type='search' >Search</button>
+
     </div>
   )
 }
@@ -89,24 +92,24 @@ function App() {
   }
 
   const getAirport = (event) => {
-    if (event.key == "Enter") {
-      const options = {
-        method: 'GET',
-        headers: {
-          'X-RapidAPI-Key': Key,
-          'X-RapidAPI-Host': Host
-        }
-      };
 
-      fetch(`https://airport-info.p.rapidapi.com/airport?iata=${city}`, options)
-        .then(response => response.json())
-        .then(response => {
-          setData(response)
-          setCity('')
-        })
-        .catch(err => console.error(err));
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
+        'X-RapidAPI-Host': process.env.REACT_APP_API_HOST
+      }
+    };
 
-    }
+    fetch(`https://airport-info.p.rapidapi.com/airport?iata=${city}`, options)
+      .then(response => response.json())
+      .then(response => {
+        setData(response)
+        setCity('')
+      })
+      .catch(err => console.error(err));
+
+
   }
 
   return (
