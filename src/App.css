@@ -1,38 +1,29 @@
+body{
+  background-color: aquamarine;
+}
 .App {
+text-align: center;
+
+}
+.header{
+ 
+  background-color: rgb(255, 255, 255);
   text-align: center;
+  padding: 20px;
+  margin:10px;
+  border-radius: 10px;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.input{
+    width: 45vw;
+    height: 20px;
+    padding: 3px;
+    font-size: 1.4rem;
+    border: 1px solid gray;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.airport{
+  display: inline-block;
+  background-color: rgb(232, 244, 100);
+  padding: 20px;
+  border: 10px solid rgb(123, 211, 205);
+  border-radius: 10px;
 }

@@ -1,10 +1,116 @@
-import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
+// {
+//   18 items
+//   "id": 3406
+//   "iata": "JFK"
+//   "icao": "KJFK"
+//   "name": "John F. Kennedy International Airport"
+//   "location": "New York City, New York, United States"
+//   "street_number": ""
+//   "street": ""
+//   "city": ""
+//   "county": "Queens County"
+//   "state": "New York"
+//   "country_iso": "US"
+//   "country": "United States"
+//   "postal_code": "11430"
+//   "phone": "+1 718-244-4444"
+//   "latitude": 40.64131
+//   "longitude": -73.77814
+//   "uct": -240
+//   "website": "https://www.jfkairport.com/"
+// }
+
+const Airport = ({ data }) => {
+  return (
+    <div>
+      {data.hasOwnProperty('error') ? <div className='airport'> <h1>"No airport found"</h1></div> :
+        <div className='airport'>
+          {data.name === '' ? <></> : <h1 className='airportname'> {data.name} ({data.iata})</h1>}
+          {data.state === '' ? <></> : <h2 className='state'> {data.state}</h2>}
+          <div className='pragraph'>
+            {data.id === '' ? <></> : <p><strong>ID:</strong> {data.id}</p>}
+            {data.location === '' ? <></> : <p><strong>Location:</strong> {data.location}</p>}
+            {data.street === '' ? <></> : <p><strong>Street:</strong> {data.street}</p>}
+            {data.city === '' ? <></> : <p className='cityname'><strong>City:</strong>{data.city}</p>}
+            {data.county === '' ? <></> : <p><strong>County:</strong> {data.county}</p>}
+            {data.state === '' ? <></> : <p><strong>State:</strong> {data.state}</p>}
+            {data.country_iso === '' ? <></> : <p><strong>Country_iso:</strong> {data.country_iso}</p>}
+            {data.country === '' ? <></> : <p><strong>Country:</strong> {data.country}</p>}
+            {data.postal_code === '' ? <></> : <p><strong>Costal_code:</strong> {data.postal_code}</p>}
+            {data.phone === '' ? <></> : <p><strong>Phone:</strong> {data.phone}</p>}
+            <a href={data.website} target="_blank"> Website </a>
+          </div>
+        </div>
+      }
+    </div>
+  )
+}
+
+const Headers = ({ handleChange, city, getAirport }) => {
+  return (
+    <div className='header'>
+      <h1>Airport.info</h1>
+      <input className='input'
+        type='text'
+        id='city'
+        name='city'
+        placeholder='City'
+        value={city}
+        onChange={handleChange}
+        onKeyPress={getAirport}
+      />
+    </div>
+  )
+}
+
+const Welcomepage = () => {
+  return (
+    <div>
+      <h3>Find your airport info....</h3>
+      <a href='https://www.world-airport-codes.com/' target="_blank">  FOLLOW THE LINK TO FIND AIRPORT CODE </a>
+
+    </div>
+  )
+}
+
 
 function App() {
+  const [data, setData] = useState('')
+  const [city, setCity] = useState('')
+
+
+  const handleChange = (e) => {
+    const value = e.target.value
+    setCity(value)
+  }
+
+  const getAirport = (event) => {
+    if (event.key == "Enter") {
+      const options = {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': '5d98cc3dbfmshe4e059990bbd999p131003jsnddf74cda066e',
+          'X-RapidAPI-Host': 'airport-info.p.rapidapi.com'
+        }
+      };
+
+      fetch(`https://airport-info.p.rapidapi.com/airport?iata=${city}`, options)
+        .then(response => response.json())
+        .then(response => {
+          setData(response)
+          setCity('')
+        })
+        .catch(err => console.error(err));
+
+    }
+  }
+
   return (
     <div className="App">
+      <Headers city={city} handleChange={handleChange} getAirport={getAirport} />
+      {data === '' ? <Welcomepage /> : <Airport data={data} />}
     </div>
   );
 }
