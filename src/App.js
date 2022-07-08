@@ -1,5 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
+import { Host, Key } from './api';
+
 // {
 //   18 items
 //   "id": 3406
@@ -91,8 +93,8 @@ function App() {
       const options = {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': '5d98cc3dbfmshe4e059990bbd999p131003jsnddf74cda066e',
-          'X-RapidAPI-Host': 'airport-info.p.rapidapi.com'
+          'X-RapidAPI-Key': Key,
+          'X-RapidAPI-Host': Host
         }
       };
 
