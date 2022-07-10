@@ -69,32 +69,33 @@ function App() {
     setCity(value)
   }
 
+  const getAirport = () => {
 
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
-      'X-RapidAPI-Host': process.env.REACT_APP_API_HOST
-    }
-  };
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
+        'X-RapidAPI-Host': process.env.REACT_APP_API_HOST
+      }
+    };
 
-  fetch(`https://airport-info.p.rapidapi.com/airport?iata=${city}`, options)
-    .then(response => response.json())
-    .then(response => {
-      setData(response)
-      setCity('')
-    })
-    .catch(err => console.error(err));
+    fetch(`https://airport-info.p.rapidapi.com/airport?iata=${city}`, options)
+      .then(response => response.json())
+      .then(response => {
+        setData(response)
+        setCity('')
+      })
+      .catch(err => console.error(err));
 
 
-}
+  }
 
-return (
-  <div className="App">
-    <Headers city={city} handleChange={handleChange} getAirport={getAirport} />
-    {data === '' ? <Welcomepage /> : <Airport data={data} />}
-  </div>
-);
+  return (
+    <div className="App">
+      <Headers city={city} handleChange={handleChange} getAirport={getAirport} />
+      {data === '' ? <Welcomepage /> : <Airport data={data} />}
+    </div>
+  );
 }
 
 export default App;
