@@ -7,7 +7,7 @@ text-align: center;
 }
 .header{
  
-  background-color: rgb(255, 255, 255);
+  background-color:#809cf3;
   text-align: center;
   padding: 20px;
   margin:10px;
@@ -18,7 +18,7 @@ text-align: center;
     height: 20px;
     padding: 3px;
     font-size: 1.4rem;
-    border: 1px solid gray;
+    border: 0px solid gray;
     border-radius: 10px 0px 0px 10px;
 }
 .airport{
